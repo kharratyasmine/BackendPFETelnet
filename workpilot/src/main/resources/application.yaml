@@ -1,0 +1,62 @@
+#spring:
+#  application:
+#    name: workpilot
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/workpilot?createDatabaseIfNotExist=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#    username: root
+#    password: ""
+#  jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        hbm2ddl:
+#          import_files_sql_extractor: org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl
+#    hibernate:
+#      ddl-auto: update
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: Kharratyasmine864@gmail.com
+#    password: ovaw qgvx ummu hvma
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#    from: Kharratyasmine864@gmail.com
+#mvc:
+#  pathmatch:
+#    matching-strategy: ant_path_matcher
+#  throw-exception-if-no-handler-found: true
+#web:
+#  resources:
+#    add-mappings: true
+#    static-locations: file:uploads/
+#  mvc:
+#    static-path-pattern: /uploads/**
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        engine:
+#          transaction:
+#            jta:
+#              platform:
+#                internal:
+#                  JtaPlatformInitiator: WARN
+#calendarific:
+#  api:
+#    key: eCpqNx1Z90b7eIzKQkgUugR9DO6Rbw73
+#application:
+#  security:
+#    jwt:
+#      secret-key: xAWJXj8EyNp1u04/6nn57XarRmOlinbe/IW9ao+Uc6E=
+#      expiration: 86400000
+#      refresh-token:
+#        expiration: 604800000
+#server:
+#  port: 8080
+#  address: 0.0.0.0

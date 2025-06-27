@@ -1,0 +1,152 @@
+package com.workpilot.entity;
+
+import com.workpilot.enumeration.Status;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Date;
+import java.util.Set;
+
+@Entity
+public class PSR {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idPSR;
+    private Date date_rapport;
+    private String avancement;
+    private String commentaires;
+    private String validé_par;
+
+    @Enumerated(EnumType.STRING)
+    private Status Status;
+
+    @OneToMany(mappedBy = "psr")
+    private Set<VerifPSR> verifPSR;
+
+    @ManyToOne
+    @JoinColumn(name = "idProject")
+    private Project project;
+    
+    
+
+	public PSR() {
+		super();
+	}
+
+
+
+	public PSR(Long idPSR, Date date_rapport, String avancement, String commentaires, String validé_par,
+			com.workpilot.enumeration.Status status, Set<VerifPSR> verifPSR, Project project) {
+		super();
+		this.idPSR = idPSR;
+		this.date_rapport = date_rapport;
+		this.avancement = avancement;
+		this.commentaires = commentaires;
+		this.validé_par = validé_par;
+		Status = status;
+		this.verifPSR = verifPSR;
+		this.project = project;
+	}
+
+
+
+	public Long getIdPSR() {
+		return idPSR;
+	}
+
+
+
+	public void setIdPSR(Long idPSR) {
+		this.idPSR = idPSR;
+	}
+
+
+
+	public Date getDate_rapport() {
+		return date_rapport;
+	}
+
+
+
+	public void setDate_rapport(Date date_rapport) {
+		this.date_rapport = date_rapport;
+	}
+
+
+
+	public String getAvancement() {
+		return avancement;
+	}
+
+
+
+	public void setAvancement(String avancement) {
+		this.avancement = avancement;
+	}
+
+
+
+	public String getCommentaires() {
+		return commentaires;
+	}
+
+
+
+	public void setCommentaires(String commentaires) {
+		this.commentaires = commentaires;
+	}
+
+
+
+	public String getValidé_par() {
+		return validé_par;
+	}
+
+
+
+	public void setValidé_par(String validé_par) {
+		this.validé_par = validé_par;
+	}
+
+
+
+	public Status getStatus() {
+		return Status;
+	}
+
+
+
+	public void setStatus(Status status) {
+		Status = status;
+	}
+
+
+
+	public Set<VerifPSR> getVerifPSR() {
+		return verifPSR;
+	}
+
+
+
+	public void setVerifPSR(Set<VerifPSR> verifPSR) {
+		this.verifPSR = verifPSR;
+	}
+
+
+
+	public Project getProject() {
+		return project;
+	}
+
+
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+  
+
+
+
+
+}

@@ -1,0 +1,39 @@
+package com.workpilot.entity;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.workpilot.enumeration.Status;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Date;
+
+@Entity
+public class Tache {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nom;
+    private String description ;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date dateDebut;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date dateFin;
+
+    @Enumerated(EnumType.STRING)
+    @JsonProperty("status")
+    private Status status;
+
+
+    @ManyToOne
+    @JoinColumn(name = "idProject")
+    private Project project;
+
+    public void setIdTache(Long id) {
+        this.id = id;
+    }
+
+}

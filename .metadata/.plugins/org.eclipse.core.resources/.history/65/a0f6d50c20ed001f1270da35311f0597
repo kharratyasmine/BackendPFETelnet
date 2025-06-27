@@ -1,0 +1,68 @@
+package com.workpilot.entity;
+
+import jakarta.persistence.*;
+
+
+import java.util.Set;
+
+@Entity
+
+public class EquipeProject {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEquipe;
+    private String nom;
+    private String description ;
+
+    @OneToMany(mappedBy = "idEquipe")
+    private Set<User> users;
+    
+    
+
+	public EquipeProject() {
+		super();
+	}
+
+	public EquipeProject(Long idEquipe, String nom, String description, Set<User> users) {
+		super();
+		this.idEquipe = idEquipe;
+		this.nom = nom;
+		this.description = description;
+		this.users = users;
+	}
+
+	public Long getIdEquipe() {
+		return idEquipe;
+	}
+
+	public void setIdEquipe(Long idEquipe) {
+		this.idEquipe = idEquipe;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+    
+    
+
+}

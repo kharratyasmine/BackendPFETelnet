@@ -1,0 +1,30 @@
+package com.workpilot.entity;
+
+import com.workpilot.enumeration.Status;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "Devis")
+
+public class Devis {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idDevis;
+    private float montant;
+    private String description;
+    private String CreePar ;
+
+    @Enumerated(EnumType.STRING)
+    private Status Status;
+
+    @ManyToOne
+    @JoinColumn(name = "idProject")
+    private Project project;
+
+
+    public void setIdDevis(Long idDevis) {
+
+        this.idDevis = idDevis;
+    }
+}

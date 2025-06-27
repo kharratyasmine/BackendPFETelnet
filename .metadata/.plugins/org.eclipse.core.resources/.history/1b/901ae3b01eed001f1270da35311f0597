@@ -1,0 +1,90 @@
+package com.workpilot.entity;
+
+import com.workpilot.enumeration.Status;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+public class Devis {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idDevis;
+    private float montant;
+    private String description;
+    private String CreePar ;
+
+    @Enumerated(EnumType.STRING)
+    private Status Status;
+
+    @ManyToOne
+    @JoinColumn(name = "idProject")
+    private Project project;
+    
+    
+
+	public Devis() {
+		super();
+	}
+
+	public Devis(Long idDevis, float montant, String description, String creePar,
+			com.workpilot.enumeration.Status status, Project project) {
+		super();
+		this.idDevis = idDevis;
+		this.montant = montant;
+		this.description = description;
+		CreePar = creePar;
+		Status = status;
+		this.project = project;
+	}
+
+	public Long getIdDevis() {
+		return idDevis;
+	}
+
+	public void setIdDevis(Long idDevis) {
+		this.idDevis = idDevis;
+	}
+
+	public float getMontant() {
+		return montant;
+	}
+
+	public void setMontant(float montant) {
+		this.montant = montant;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getCreePar() {
+		return CreePar;
+	}
+
+	public void setCreePar(String creePar) {
+		CreePar = creePar;
+	}
+
+	public Status getStatus() {
+		return Status;
+	}
+
+	public void setStatus(Status status) {
+		Status = status;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+
+
+}

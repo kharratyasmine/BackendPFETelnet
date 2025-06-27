@@ -1,0 +1,25 @@
+package com.workpilot.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Set;
+
+@Entity
+@Table(name = "EquipeProject")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class EquipeProject {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEquipe;
+    private String nom;
+    private String description ;
+
+    @OneToMany(mappedBy = "equipe")
+    private Set<User> users;
+
+}

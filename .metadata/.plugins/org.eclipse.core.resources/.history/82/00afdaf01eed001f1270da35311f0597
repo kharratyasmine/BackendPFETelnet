@@ -1,0 +1,86 @@
+package com.workpilot.entity;
+
+
+import java.sql.Date;
+
+
+import jakarta.persistence.*;
+
+
+@Entity
+public class HistoriqueModifications {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idHist;
+    private Date date_modification;
+    private String Type_modif;
+    private String ancienne_val;
+    private String nouvelle_val;
+
+    @ManyToOne
+    @JoinColumn(name = "idUser")
+    private User user;
+
+    
+	public HistoriqueModifications(Long idHist, Date date_modification, String type_modif, String ancienne_val,
+			String nouvelle_val, User user) {
+		super();
+		this.idHist = idHist;
+		this.date_modification = date_modification;
+		Type_modif = type_modif;
+		this.ancienne_val = ancienne_val;
+		this.nouvelle_val = nouvelle_val;
+		this.user = user;
+	}
+
+	public Long getIdHist() {
+		return idHist;
+	}
+
+	public void setIdHist(Long idHist) {
+		this.idHist = idHist;
+	}
+
+	public Date getDate_modification() {
+		return date_modification;
+	}
+
+	public void setDate_modification(Date date_modification) {
+		this.date_modification = date_modification;
+	}
+
+	public String getType_modif() {
+		return Type_modif;
+	}
+
+	public void setType_modif(String type_modif) {
+		Type_modif = type_modif;
+	}
+
+	public String getAncienne_val() {
+		return ancienne_val;
+	}
+
+	public void setAncienne_val(String ancienne_val) {
+		this.ancienne_val = ancienne_val;
+	}
+
+	public String getNouvelle_val() {
+		return nouvelle_val;
+	}
+
+	public void setNouvelle_val(String nouvelle_val) {
+		this.nouvelle_val = nouvelle_val;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
+    
+}

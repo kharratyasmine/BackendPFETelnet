@@ -1,0 +1,43 @@
+package com.workpilot.entity;
+
+import com.workpilot.enumeration.Status;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Date;
+import java.util.Set;
+
+@Entity
+@Table(name = "PSR")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class PSR {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idPSR;
+    private Date date_rapport;
+    private String avancement;
+    private String commentaires;
+    private String validé_par;
+
+    @Enumerated(EnumType.STRING)
+    private Status Status;
+
+    @OneToMany(mappedBy = "psr")
+    private Set<VerifPSR> verifPSR;
+
+    @ManyToOne
+    @JoinColumn(name = "idProject")
+    private Project project;
+
+    public void setIdPSR(Long idPSR) {
+        this.idPSR = idPSR;
+    }
+
+
+
+
+}

@@ -1,0 +1,47 @@
+package com.workpilot.entity;
+
+
+import com.workpilot.enumeration.Status;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Date;
+import java.util.Set;
+
+@Entity
+@Table(name = "Project")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class Project {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idProject;
+    private String name;
+    private String description;
+    private String clients;
+    private float budget;
+    private Date startDate;
+    private Date endDate;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @OneToMany(mappedBy = "project")
+    private Set<Tache> tache;
+    @OneToMany(mappedBy = "project")
+    private Set<Devis> devis;
+
+    @OneToMany(mappedBy = "project")
+    private Set<PSR> psr;
+
+    @ManyToMany(mappedBy = "projects") // Ensure the 'mappedBy' is correct
+    private Set<User> users;
+
+    public void setIdProject(Long idProject) {
+
+        this.idProject = idProject;
+    }
+}

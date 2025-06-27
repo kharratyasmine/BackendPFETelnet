@@ -1,0 +1,80 @@
+package com.workpilot.entity;
+
+
+import com.workpilot.enumeration.Status;
+import jakarta.persistence.*;
+
+
+import java.util.Date;
+
+@Entity
+class VerifPSR {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idVerif;
+    private String commentaires ;
+    private Date dateVerif;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @ManyToOne
+    @JoinColumn(name = "idPSR")
+    private PSR psr;
+
+    
+	public VerifPSR() {
+		super();
+	}
+
+	public VerifPSR(Long idVerif, String commentaires, Date dateVerif, Status status, PSR psr) {
+		super();
+		this.idVerif = idVerif;
+		this.commentaires = commentaires;
+		this.dateVerif = dateVerif;
+		this.status = status;
+		this.psr = psr;
+	}
+
+	public Long getIdVerif() {
+		return idVerif;
+	}
+
+	public void setIdVerif(Long idVerif) {
+		this.idVerif = idVerif;
+	}
+
+	public String getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(String commentaires) {
+		this.commentaires = commentaires;
+	}
+
+	public Date getDateVerif() {
+		return dateVerif;
+	}
+
+	public void setDateVerif(Date dateVerif) {
+		this.dateVerif = dateVerif;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public PSR getPsr() {
+		return psr;
+	}
+
+	public void setPsr(PSR psr) {
+		this.psr = psr;
+	}
+    
+    
+}

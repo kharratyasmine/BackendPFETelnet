@@ -1,0 +1,21 @@
+package com.workpilot.entity;
+
+
+import jakarta.persistence.*;
+
+
+@Entity
+public class HistoriqueModifications {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idHist;
+    private Data date_modification;
+    private String Type_modif;
+    private String ancienne_val;
+    private String nouvelle_val;
+
+    @ManyToOne
+    @JoinColumn(name = "idUser")
+    private User user;
+}

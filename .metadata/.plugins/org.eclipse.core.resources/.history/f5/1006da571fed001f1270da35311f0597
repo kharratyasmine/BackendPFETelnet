@@ -1,0 +1,39 @@
+package com.workpilot.entity;
+
+import com.workpilot.enumeration.Role;
+import jakarta.persistence.*;
+
+
+import java.util.Set;
+
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idUser;
+    private String nom;
+    private String email;
+    private String motDePasse;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private Set<HistoriqueModifications> historiqueModifications;
+
+    @ManyToOne
+    @JoinColumn(name = "idEquipe")
+    private EquipeProject equipe;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_projet",
+            joinColumns = @JoinColumn(name = "idUser"),
+            inverseJoinColumns = @JoinColumn(name = "idProject")
+    )
+    private Set<Project> projects;
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+}

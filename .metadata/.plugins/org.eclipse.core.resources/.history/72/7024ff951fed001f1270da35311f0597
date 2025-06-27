@@ -1,0 +1,44 @@
+package com.workpilot.service;
+
+import com.workpilot.entity.Tache;
+import com.workpilot.repository.TacheRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TacheServiceImpl implements TacheService{
+    @Autowired
+    private TacheRepository tacheRepository;
+
+    @Override
+    public List<Tache> GetAllTaches(){
+        return (List<Tache>) tacheRepository.findAll();
+    }
+    @Override
+    public Tache getTacheById(Long id) {
+        return tacheRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Tache createTache(Tache tache){
+        return tacheRepository.save(tache);
+    }
+
+    @Override
+    public Tache updateTache(Tache tache, Long id) {
+        if (tacheRepository.existsById(id)) {
+            tache.setIdTache(id);
+            return tacheRepository.save(tache);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteTacheById(Long id) {
+        tacheRepository.deleteById(id);
+
+    }
+}

@@ -1,0 +1,30 @@
+package com.workpilot.entity;
+
+
+import com.workpilot.enumeration.Status;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Date;
+
+@Entity
+@Table(name = "VerifPSR")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class VerifPSR {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idVerif;
+    private String commentaires ;
+    private Date dateVerif;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @ManyToOne
+    @JoinColumn(name = "idPSR")
+    private PSR psr;
+}

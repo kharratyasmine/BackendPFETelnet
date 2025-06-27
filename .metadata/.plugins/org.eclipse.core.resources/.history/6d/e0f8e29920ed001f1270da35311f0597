@@ -1,0 +1,44 @@
+package com.workpilot.entity;
+
+import com.workpilot.enumeration.Role;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+public class Dashboard {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idDashboard;
+
+    @Enumerated(EnumType.STRING)
+    private Role typeProfile;
+
+
+    public Dashboard() {
+        super();
+    }
+
+    public Dashboard(Long idDashboard, Role typeProfile) {
+        super();
+        this.idDashboard = idDashboard;
+        this.typeProfile = typeProfile;
+    }
+
+    public Long getIdDashboard() {
+        return idDashboard;
+    }
+
+    public void setIdDashboard(Long idDashboard) {
+        this.idDashboard = idDashboard;
+    }
+
+    public Role getTypeProfile() {
+        return typeProfile;
+    }
+
+    public void setTypeProfile(Role typeProfile) {
+        this.typeProfile = typeProfile;
+    }
+
+
+}

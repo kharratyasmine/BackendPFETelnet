@@ -1,0 +1,120 @@
+package com.workpilot.entity;
+
+import com.workpilot.enumeration.Role;
+import jakarta.persistence.*;
+
+
+import java.util.Set;
+
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idUser;
+    private String nom;
+    private String email;
+    private String motDePasse;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private Set<HistoriqueModifications> historiqueModifications;
+
+    @ManyToOne
+    @JoinColumn(name = "idEquipe")
+    private EquipeProject equipeProject;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_projet",
+            joinColumns = @JoinColumn(name = "idUser"),
+            inverseJoinColumns = @JoinColumn(name = "idProject")
+    )
+    private Set<Project> projects;
+
+    
+    
+	public User() {
+		super();
+	}
+
+	public User(Long idUser, String nom, String email, String motDePasse, Role role,
+			Set<HistoriqueModifications> historiqueModifications, EquipeProject equipe, Set<Project> projects) {
+		super();
+		this.idUser = idUser;
+		this.nom = nom;
+		this.email = email;
+		this.motDePasse = motDePasse;
+		this.role = role;
+		this.historiqueModifications = historiqueModifications;
+		this.equipeProject = equipe;
+		this.projects = projects;
+	}
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Set<HistoriqueModifications> getHistoriqueModifications() {
+		return historiqueModifications;
+	}
+
+	public void setHistoriqueModifications(Set<HistoriqueModifications> historiqueModifications) {
+		this.historiqueModifications = historiqueModifications;
+	}
+
+	public EquipeProject getEquipe() {
+		return equipeProject;
+	}
+
+	public void setEquipe(EquipeProject equipeProject) {
+		this.equipeProject = equipe;
+	}
+
+	public Set<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
+	}
+    
+
+}
